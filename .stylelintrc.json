@@ -1,5 +1,9 @@
 {
-  "extends": ["stylelint-config-standard" , "stylelint-prettier/recommended"],
+  "defaultSeverity": "warning",
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-prettier/recommended"
+  ],
   "rules": {
     "import-notation": "string",
     "custom-property-pattern": null,
