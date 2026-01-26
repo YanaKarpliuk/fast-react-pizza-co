@@ -1,8 +1,11 @@
-function MenuItem({ pizza }) {
+import styles from './Menu.module.scss'
+import { formatCurrency } from '../../utils/helpers.js';
+
+export default function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
   return (
-    <li>
+    <li className={styles.menuItem}>
       <img src={imageUrl} alt={name} />
       <div>
         <p>{name}</p>
@@ -14,5 +17,3 @@ function MenuItem({ pizza }) {
     </li>
   );
 }
-
-export default MenuItem;
