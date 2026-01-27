@@ -15,5 +15,5 @@ export default function Menu() {
 }
 
 export async function loader() {
-  return getMenu()
+  return await getMenu()
 }
