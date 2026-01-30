@@ -5,6 +5,17 @@
   padding: 16px 0;
   background-color: var(--color-yellow);
 
+  > div {
+    display: grid;
+    gap: 16px;
+
+    @include media-breakpoint-up($tablet) {
+      gap: 24px;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+
   a {
     text-transform: uppercase;
     font-size: 20px;

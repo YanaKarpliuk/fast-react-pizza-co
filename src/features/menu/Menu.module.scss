@@ -1,5 +1,76 @@
 .menuList {
   .menuItem {
-    background: gray;
+    display: grid;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-gray);
+
+    @include media-breakpoint-up($tablet) {
+      grid-template-columns: 120px 1fr 120px;
+      gap: 20px;
+    }
+
+    &.soldOut {
+      .image {
+        filter: grayscale(1);
+      }
+    }
+
+    .image {
+      width: 120px;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .info {
+      @include media-breakpoint-up($tablet) {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .title {
+        margin: 0;
+        font-size: 16px;
+
+        @include media-breakpoint-up($tablet) {
+          font-size: 18px;
+        }
+      }
+
+      .ingredients {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+
+      .state {
+        margin-top: auto;
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+    }
+
+    .addBtn {
+      padding: 10px 15px;
+      background: var(--color-yellow);
+      border-radius: 50px;
+      border: 0;
+      text-transform: uppercase;
+      transition: $transition-time;
+
+      @include media-breakpoint-up($tablet) {
+        align-self: flex-end;
+      }
+
+      @include active {
+        background: var(--color-yellow-dark);
+      }
+
+      &[disabled] {
+        filter: grayscale(0.8);
+        cursor: unset;
+      }
+    }
   }
 }

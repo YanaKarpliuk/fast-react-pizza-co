@@ -5,19 +5,7 @@
   width: 100%;
   box-sizing: border-box;
 
-  .layout {
-    display: grid;
-    gap: 16px;
-
-    @include media-breakpoint-up($tablet) {
-      gap: 24px;
-    }
-
-    &.twoCol {
-      @include media-breakpoint-up($tablet) {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-      }
-    }
+  &.narrow {
+    max-width: 700px;
   }
 }

@@ -4,6 +4,7 @@ body {
   --color-dark: #252525;
   --color-light: #f7f2e9;
   --color-yellow: #edc84b;
+  --color-yellow-dark: #f8c725;
   --color-gray: #888;
 
   font-family: 'Roboto Mono', sans-serif;
@@ -33,4 +34,8 @@ ol {
   overflow: hidden;
   white-space: nowrap;
   border: 0;
+}
+
+button {
+  cursor: pointer;
 }
