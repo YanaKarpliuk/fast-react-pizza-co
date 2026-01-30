@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+body {
+  --color-dark: #252525;
+  --color-light: #f7f2e9;
+  --color-yellow: #edc84b;
+  --color-gray: #888;
+
+  font-family: 'Roboto Mono', sans-serif;
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  margin: 0;
+  font-size: 14px;
+
+  @include media-breakpoint-up($tablet) {
+    font-size: 16px;
+  }
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+}

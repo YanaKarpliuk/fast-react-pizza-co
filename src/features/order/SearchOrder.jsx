@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './Order.module.scss'
 
 export default function SearchOrder() {
   const [query, setQuery] = useState('')
@@ -13,13 +14,14 @@ export default function SearchOrder() {
   }
 
   return (
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='order'>Search for an order #</label>
+      <form onSubmit={handleSubmit} className={styles.searchOrder}>
+        <label className={'sr-only'} htmlFor='order'>Search for an order number</label>
         <input
             id='order'
             placeholder="Search for an order #"
             value={query}
             onInput={(e) => setQuery(e.target.value)}
+            className={styles.input}
         />
       </form>
   );

@@ -1,0 +1,23 @@
+.container {
+  margin: 0 auto;
+  padding: 0 24px;
+  max-width: 1000px;
+  width: 100%;
+  box-sizing: border-box;
+
+  .layout {
+    display: grid;
+    gap: 16px;
+
+    @include media-breakpoint-up($tablet) {
+      gap: 24px;
+    }
+
+    &.twoCol {
+      @include media-breakpoint-up($tablet) {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+    }
+  }
+}

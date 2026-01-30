@@ -1,0 +1,21 @@
+// Search order.
+.searchOrder {
+  .input {
+    display: block;
+    margin-left: auto;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 50px;
+    max-width: 300px;
+    width: 100%;
+    font-size: inherit;
+    background: rgba(white, 0.7);
+    transition: $transition-time;
+    box-sizing: border-box;
+
+    @include active {
+      outline: none;
+      background: var(--color-light);
+    }
+  }
+}

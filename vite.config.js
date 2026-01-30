@@ -9,12 +9,12 @@ export default defineConfig({
     eslint(),
     stylelint()
   ],
-  // css: {
-  //   preprocessorOptions: {
-  //     scss: {
-  //       additionalData:
-  //           '@use "/src/scss/main.scss" as *;',
-  //     },
-  //   },
-  // },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData:
+            '@use "/src/index.scss" as *;',
+      },
+    },
+  },
 })

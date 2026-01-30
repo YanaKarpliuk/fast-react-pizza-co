@@ -8,13 +8,13 @@ export default function AppLayout() {
   const isLoading = navigation.state === 'loading'
 
   return (
-      <div>
+      <>
         {isLoading && <Loader/>}
         <Header/>
         <main>
           <Outlet/>
         </main>
         <CartOverview/>
-      </div>
+      </>
   )
 }
