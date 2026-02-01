@@ -1,5 +1,6 @@
 import styles from './Menu.module.scss'
 import { formatCurrency } from '../../utils/helpers.js';
+import Button from '../../ui/Button/Button';
 
 export default function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
@@ -12,13 +13,11 @@ export default function MenuItem({ pizza }) {
           <p className={styles.ingredients}>{ingredients.join(', ')}</p>
           <p className={styles.state}>{!soldOut ? formatCurrency(unitPrice) : 'Sold out'}</p>
         </div>
-        <button
-            className={styles.addBtn}
-            aria-label={`Add ${name} to cart`}
+        <Button
+            name={'Add to cart'}
             disabled={soldOut}
-        >
-          Add to cart
-        </button>
+            ariaLabel={`Add ${name} to cart`}
+        />
       </li>
   );
 }

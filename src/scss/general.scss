@@ -5,13 +5,16 @@ body {
   --color-light: #f7f2e9;
   --color-yellow: #edc84b;
   --color-yellow-dark: #f8c725;
-  --color-gray: #888;
+  --color-gray: #b2b2b2;
+  --color-blue: #0b77ff;
 
   font-family: 'Roboto Mono', sans-serif;
   background-color: var(--color-light);
   color: var(--color-dark);
   margin: 0;
+  padding-bottom: 70px;
   font-size: 14px;
+  min-height: calc(100vh - 70px);
 
   @include media-breakpoint-up($tablet) {
     font-size: 16px;

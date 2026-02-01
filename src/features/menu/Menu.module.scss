@@ -51,25 +51,9 @@
       }
     }
 
-    .addBtn {
-      padding: 10px 15px;
-      background: var(--color-yellow);
-      border-radius: 50px;
-      border: 0;
-      text-transform: uppercase;
-      transition: $transition-time;
-
+    button {
       @include media-breakpoint-up($tablet) {
         align-self: flex-end;
-      }
-
-      @include active {
-        background: var(--color-yellow-dark);
-      }
-
-      &[disabled] {
-        filter: grayscale(0.8);
-        cursor: unset;
       }
     }
   }

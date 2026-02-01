@@ -1,4 +1,9 @@
 import { Link } from 'react-router-dom';
+import Container from '../../ui/Container/Container';
+import CartItem from './CartItem.jsx';
+import EmptyCart from './EmptyCart';
+import styles from './Cart.module.scss';
+import Button from '../../ui/Button/Button';
 
 const fakeCart = [
   {
@@ -24,21 +29,27 @@ const fakeCart = [
   },
 ];
 
-function Cart() {
+export default function Cart() {
   const cart = fakeCart;
 
   return (
-    <div>
-      <Link to="/menu">&larr; Back to menu</Link>
-
-      <h2>Your cart, %NAME%</h2>
-
-      <div>
-        <Link to="/order/new">Order pizzas</Link>
-        <button>Clear cart</button>
-      </div>
-    </div>
+      <Container narrow={true}>
+        <Link className={styles.breadcrumb} to="/menu">&larr; Back to menu</Link>
+        {cart.length > 0 ?
+            (
+                <div className={styles.cart}>
+                  <h2>Your cart, %NAME%</h2>
+                  <ul className={styles.list}>
+                    {cart.map(item => <CartItem key={item.pizzaId} item={item}/>)}
+                  </ul>
+                  <div className={styles.actions}>
+                    <Button link={true} name={'Order pizzas'} ariaLabel={'Order pizzas'} path={'/order/new'}/>
+                    <Button name={'Clear cart'} ariaLabel={'Clear cart'} secondary={true}/>
+                  </div>
+                </div>
+            ) :
+            <EmptyCart/>
+        }
+      </Container>
   );
 }
-
-export default Cart;
