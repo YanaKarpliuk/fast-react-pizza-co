@@ -38,7 +38,7 @@ export default function Cart() {
         {cart.length > 0 ?
             (
                 <div className={styles.cart}>
-                  <h2>Your cart, %NAME%</h2>
+                  <h1>Your cart, %NAME%</h1>
                   <ul className={styles.list}>
                     {cart.map(item => <CartItem key={item.pizzaId} item={item}/>)}
                   </ul>

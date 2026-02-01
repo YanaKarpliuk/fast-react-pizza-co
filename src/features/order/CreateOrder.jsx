@@ -1,6 +1,9 @@
 // import { useState } from 'react';
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant.js';
+import Container from '../../ui/Container/Container';
+import styles from './Order.module.scss';
+import Button from '../../ui/Button/Button';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -42,51 +45,53 @@ export default function CreateOrder() {
   const cart = fakeCart;
 
   return (
-      <div>
-        <h2>Ready to order? Let's go!</h2>
+      <Container narrow={true}>
+        <div className={styles.orderForm}>
+          <h1>Ready to order? Let's go!</h1>
 
-        {/* React router Form for POST, PATCH, DELETE. */}
-        {/* No need to write action='/order/new' in this case */}
-        {/* because it's automatically gets set to the current path. */}
-        <Form method="POST">
-          <div>
-            <label>First Name</label>
-            <input type="text" name="customer" required/>
-          </div>
+          {/* React router Form for POST, PATCH, DELETE. */}
+          {/* No need to write action='/order/new' in this case */}
+          {/* because it's automatically gets set to the current path. */}
+          <Form method="POST" className={styles.form}>
+            <div className={styles.formInput}>
+              <label htmlFor="customer">First Name</label>
+              <input type="text" name="customer" id="customer" required/>
+            </div>
 
-          <div>
-            <label>Phone number</label>
-            <input type="tel" name="phone" required/>
-            {formErrors?.phone && <p>{formErrors.phone}</p>}
-          </div>
+            <div className={styles.formInput}>
+              <label htmlFor="phone">Phone number</label>
+              <input type="tel" name="phone" id="phone" required/>
+              {formErrors?.phone && <p className={styles.error}>{formErrors.phone}</p>}
+            </div>
 
-          <div>
-            <label>Address</label>
-            <input type="text" name="address" required/>
-          </div>
+            <div className={styles.formInput}>
+              <label htmlFor="address">Address</label>
+              <input type="text" name="address" id="address" required/>
+            </div>
 
-          <div>
-            <input
-                type="checkbox"
-                name="priority"
-                id="priority"
-                // value={withPriority}
-                // onChange={(e) => setWithPriority(e.target.checked)}
-            />
-            <label htmlFor="priority">Want to yo give your order priority?</label>
-          </div>
+            <div className={styles.formCheckbox}>
+              <input
+                  type="checkbox"
+                  name="priority"
+                  id="priority"
+                  // value={withPriority}
+                  // onChange={(e) => setWithPriority(e.target.checked)}
+              />
+              <label htmlFor="priority">Want to yo give your order priority?</label>
+            </div>
 
-          <div>
-            {/* Make data available in the action function. */}
-            <input type="hidden" name="cart" value={JSON.stringify(cart)}/>
-            <button
-                disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Placing order...' : 'Order now'}
-            </button>
-          </div>
-        </Form>
-      </div>
+            <div className={styles.formAction}>
+              {/* Make data available in the action function. */}
+              <input type="hidden" name="cart" value={JSON.stringify(cart)}/>
+              <Button
+                  name={isSubmitting ? 'Placing order...' : 'Order now'}
+                  ariaLabel={isSubmitting ? 'Placing order...' : 'Order now'}
+                  disabled={isSubmitting}
+              />
+            </div>
+          </Form>
+        </div>
+      </Container>
   );
 }
 
