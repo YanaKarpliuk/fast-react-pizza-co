@@ -5,6 +5,10 @@ import {
 } from '../../utils/helpers';
 import { getOrder } from '../../services/apiRestaurant.js';
 import { useLoaderData } from 'react-router-dom';
+import Container from '../../ui/Container/Container';
+import styles from './Order.module.scss';
+import CartItem from '../cart/CartItem.jsx';
+import OrderItem from './OrderItem';
 
 export default function Order() {
   const order = useLoaderData()
@@ -22,28 +26,33 @@ export default function Order() {
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
-      <div>
-        <div>
-          <h2>Status</h2>
-          <div>
-            {priority && <span>Priority</span>}
-            <span>{status} order</span>
+      <Container narrow={true}>
+        <div className={styles.orderOverview}>
+          <div className={styles.orderTop}>
+            <h1>Order #{id} status</h1>
+            <div className={styles.orderLabels}>
+              {priority && <div className={`${styles.orderLabel} ${styles.priority}`}>Priority</div>}
+              <div className={styles.orderLabel}>{status} order</div>
+            </div>
+          </div>
+          <div className={styles.orderDeliveryStatus}>
+            <p className={styles.orderStatus}>
+              {deliveryIn >= 0
+                  ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
+                  : 'Order should have arrived'}
+            </p>
+            <p className={styles.orderDelivery}>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
+          </div>
+          <ul className={styles.list}>
+            {cart.map(item => <OrderItem key={item.pizzaId} item={item}/>)}
+          </ul>
+          <div className={styles.pricing}>
+            <p>Price pizza: {formatCurrency(orderPrice)}</p>
+            {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
+            <p className={styles.summary}>To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
           </div>
         </div>
-        <div>
-          <p>
-            {deliveryIn >= 0
-                ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
-                : 'Order should have arrived'}
-          </p>
-          <p>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
-        </div>
-        <div>
-          <p>Price pizza: {formatCurrency(orderPrice)}</p>
-          {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
-          <p>To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
-        </div>
-      </div>
+      </Container>
   );
 }
 
