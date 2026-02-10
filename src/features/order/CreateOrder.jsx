@@ -1,9 +1,11 @@
-// import { useState } from 'react';
-import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
+import { redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant.js';
 import Container from '../../ui/Container/Container';
 import styles from './Order.module.scss';
-import Button from '../../ui/Button/Button';
+import FormInput from '../../ui/Form/FormInput';
+import FormEl from '../../ui/Form/Form.jsx';
+import FormCheckbox from '../../ui/Form/FormCheckbox';
+import FormAction from '../../ui/Form/FormAction';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -36,10 +38,10 @@ const fakeCart = [
 ];
 
 export default function CreateOrder() {
-  const navigation = useNavigation()
-  const isSubmitting = navigation.state === 'submitting'
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === 'submitting';
 
-  const formErrors = useActionData()
+  const formErrors = useActionData();
 
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
@@ -48,48 +50,39 @@ export default function CreateOrder() {
       <Container narrow={true}>
         <div className={styles.orderForm}>
           <h1>Ready to order? Let's go!</h1>
-
-          {/* React router Form for POST, PATCH, DELETE. */}
-          {/* No need to write action='/order/new' in this case */}
-          {/* because it's automatically gets set to the current path. */}
-          <Form method="POST" className={styles.form}>
-            <div className={styles.formInput}>
-              <label htmlFor="customer">First Name</label>
-              <input type="text" name="customer" id="customer" required/>
-            </div>
-
-            <div className={styles.formInput}>
-              <label htmlFor="phone">Phone number</label>
-              <input type="tel" name="phone" id="phone" required/>
-              {formErrors?.phone && <p className={styles.error}>{formErrors.phone}</p>}
-            </div>
-
-            <div className={styles.formInput}>
-              <label htmlFor="address">Address</label>
-              <input type="text" name="address" id="address" required/>
-            </div>
-
-            <div className={styles.formCheckbox}>
-              <input
-                  type="checkbox"
-                  name="priority"
-                  id="priority"
-                  // value={withPriority}
-                  // onChange={(e) => setWithPriority(e.target.checked)}
-              />
-              <label htmlFor="priority">Want to yo give your order priority?</label>
-            </div>
-
-            <div className={styles.formAction}>
-              {/* Make data available in the action function. */}
-              <input type="hidden" name="cart" value={JSON.stringify(cart)}/>
-              <Button
-                  name={isSubmitting ? 'Placing order...' : 'Order now'}
-                  ariaLabel={isSubmitting ? 'Placing order...' : 'Order now'}
-                  disabled={isSubmitting}
-              />
-            </div>
-          </Form>
+          <FormEl>
+            <FormInput
+                name={'customer'}
+                id={'customer'}
+                label={'First Name'}
+            />
+            <FormInput
+                name={'phone'}
+                id={'phone'}
+                type={'tel'}
+                label={'Phone number'}
+                errorsData={formErrors}
+                errorMsg={formErrors?.phone}
+            />
+            <FormInput
+                name={'address'}
+                id={'address'}
+                label={'Address'}
+            />
+            <FormCheckbox
+                name={'priority'}
+                id={'priority'}
+                label={'Want to yo give your order priority?'}
+                required={false}
+            />
+            <FormAction
+                name={'cart'}
+                value={JSON.stringify(cart)}
+                btnName={'Order now'}
+                btnNameLoading={'Placing order...'}
+                isSubmitting={isSubmitting}
+            />
+          </FormEl>
         </div>
       </Container>
   );
@@ -97,22 +90,22 @@ export default function CreateOrder() {
 
 // When the Form is submitted, it's intercepted by this action.
 export async function action({ request }) {
-  const formData = await request.formData()
-  const data = Object.fromEntries(formData)
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
 
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
     priority: data.priority === 'on'
-  }
+  };
 
-  const errors = {}
-  if (!isValidPhone(order.phone)) errors.phone = 'The phone number is not correct.'
-  if (Object.keys(errors).length > 0) return errors
+  const errors = {};
+  if (!isValidPhone(order.phone)) errors.phone = 'The phone number is not correct.';
+  if (Object.keys(errors).length > 0) return errors;
 
-  const newOrder = await createOrder(order)
+  const newOrder = await createOrder(order);
 
   // useNavigate can't be used in simple functions.
   // id is generated by API.
-  return redirect(`/order/${newOrder.id}`)
+  return redirect(`/order/${newOrder.id}`);
 }

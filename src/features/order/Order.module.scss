@@ -28,49 +28,6 @@
     font-size: 20px;
     margin: 0 0 20px;
   }
-
-  .form {
-    .formInput {
-      display: grid;
-      gap: 8px;
-      padding: 10px 0;
-
-      input {
-        display: block;
-        padding: 10px 20px;
-        border: 1px solid var(--color-gray);
-        border-radius: 50px;
-        width: 100%;
-        font-size: inherit;
-        background: rgba(white, 0.7);
-        transition: $transition-time;
-        box-sizing: border-box;
-
-        @include active {
-          outline: none;
-          background: white;
-        }
-      }
-
-      .error {
-        color: red;
-        font-size: 12px;
-        margin: 0;
-        padding: 0 20px;
-      }
-    }
-
-    .formCheckbox {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      padding: 10px 0;
-    }
-
-    .formAction {
-      margin-top: 20px;
-    }
-  }
 }
 
 // Order overview.
