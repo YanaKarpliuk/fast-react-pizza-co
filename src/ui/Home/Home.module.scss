@@ -1,19 +1,15 @@
-.title {
-  margin: 50px 0;
-  text-align: center;
+.homeWrapper {
+  .title {
+    margin: 50px 0;
+    text-align: center;
 
-  .highlighted {
-    color: var(--color-yellow-dark);
+    .highlighted {
+      color: var(--color-yellow-dark);
+    }
   }
-}
 
-.text {
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 18px;
-}
-
-.formWrapper {
-  max-width: 400px;
-  margin: 0 auto;
+  a {
+    width: fit-content;
+    margin: 20px auto 0;
+  }
 }

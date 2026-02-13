@@ -9,7 +9,10 @@ export default function FormInput({
                                     errorsData,
                                     errorMsg,
                                     labelHidden = false,
-                                    placeholder
+                                    placeholder,
+                                    value,
+                                    handleChange,
+                                    defaultValue = ''
                                   }) {
   return (
       <div className={styles.formInput}>
@@ -23,8 +26,11 @@ export default function FormInput({
             type={type}
             name={name}
             id={id}
+            value={value}
             required={required}
             placeholder={placeholder}
+            onChange={handleChange}
+            defaultValue={defaultValue}
         />
         {errorsData && errorMsg && <p className={styles.error}>{errorMsg}</p>}
       </div>

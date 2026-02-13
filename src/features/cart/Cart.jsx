@@ -4,6 +4,7 @@ import CartItem from './CartItem.jsx';
 import EmptyCart from './EmptyCart';
 import styles from './Cart.module.scss';
 import Button from '../../ui/Button/Button';
+import { useSelector } from 'react-redux';
 
 const fakeCart = [
   {
@@ -31,6 +32,7 @@ const fakeCart = [
 
 export default function Cart() {
   const cart = fakeCart;
+  const username = useSelector(state => state.user.username)
 
   return (
       <Container narrow={true}>
@@ -38,7 +40,7 @@ export default function Cart() {
         {cart.length > 0 ?
             (
                 <div className={styles.cart}>
-                  <h1>Your cart, %NAME%</h1>
+                  <h1>Your cart, {username}</h1>
                   <ul className={styles.list}>
                     {cart.map(item => <CartItem key={item.pizzaId} item={item}/>)}
                   </ul>

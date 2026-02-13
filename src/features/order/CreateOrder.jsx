@@ -3,9 +3,10 @@ import { createOrder } from '../../services/apiRestaurant.js';
 import Container from '../../ui/Container/Container';
 import styles from './Order.module.scss';
 import FormInput from '../../ui/Form/FormInput';
-import FormEl from '../../ui/Form/Form.jsx';
+import FormRouter from '../../ui/Form/FormRouter.jsx';
 import FormCheckbox from '../../ui/Form/FormCheckbox';
 import FormAction from '../../ui/Form/FormAction';
+import { useSelector } from 'react-redux';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -38,6 +39,7 @@ const fakeCart = [
 ];
 
 export default function CreateOrder() {
+  const username = useSelector(state => state.user.username)
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
 
@@ -50,11 +52,12 @@ export default function CreateOrder() {
       <Container narrow={true}>
         <div className={styles.orderForm}>
           <h1>Ready to order? Let's go!</h1>
-          <FormEl>
+          <FormRouter>
             <FormInput
                 name={'customer'}
                 id={'customer'}
                 label={'First Name'}
+                defaultValue={username}
             />
             <FormInput
                 name={'phone'}
@@ -79,10 +82,12 @@ export default function CreateOrder() {
                 name={'cart'}
                 value={JSON.stringify(cart)}
                 btnName={'Order now'}
+                ariaLabel={'Order now'}
                 btnNameLoading={'Placing order...'}
                 isSubmitting={isSubmitting}
+                isRouterAction={true}
             />
-          </FormEl>
+          </FormRouter>
         </div>
       </Container>
   );
