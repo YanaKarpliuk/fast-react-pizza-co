@@ -9,10 +9,11 @@ import Container from '../../ui/Container/Container';
 import styles from './Order.module.scss';
 import OrderItem from './OrderItem';
 import { useEffect } from 'react';
+import UpdateOrder from './UpdateOrder';
 
 export default function Order() {
-  const order = useLoaderData()
-  const fetcher = useFetcher()
+  const order = useLoaderData();
+  const fetcher = useFetcher();
   // Everyone can search for all orders,
   // so for privacy reasons we're gonna exclude names or address, these are only for the restaurant staff
   const {
@@ -28,8 +29,8 @@ export default function Order() {
 
   useEffect(() => {
     // Load data from this route on page mount.
-    if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu')
-  }, [fetcher])
+    if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu');
+  }, [fetcher]);
 
   return (
       <Container narrow={true}>
@@ -64,6 +65,7 @@ export default function Order() {
             {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
             <p className={styles.summary}>To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
           </div>
+          {!priority && <UpdateOrder order={order}/>}
         </div>
       </Container>
   );
@@ -72,5 +74,5 @@ export default function Order() {
 // Get order id from url with { params }.
 // useParams doesn't work in simple functions.
 export async function loader({ params }) {
-  return await getOrder(params.orderId)
+  return await getOrder(params.orderId);
 }
