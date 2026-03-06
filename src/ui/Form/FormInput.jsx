@@ -12,7 +12,8 @@ export default function FormInput({
                                     placeholder,
                                     value,
                                     handleChange,
-                                    defaultValue = ''
+                                    defaultValue = '',
+                                    disabled = false
                                   }) {
   return (
       <div className={styles.formInput}>
@@ -31,6 +32,7 @@ export default function FormInput({
             placeholder={placeholder}
             onChange={handleChange}
             defaultValue={defaultValue}
+            disabled={disabled}
         />
         {errorsData && errorMsg && <p className={styles.error}>{errorMsg}</p>}
       </div>

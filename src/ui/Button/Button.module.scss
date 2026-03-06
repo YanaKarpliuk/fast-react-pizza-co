@@ -25,6 +25,11 @@
     font-size: 18px;
   }
 
+  &.small {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
   @include active {
     background: var(--color-yellow-dark);
   }

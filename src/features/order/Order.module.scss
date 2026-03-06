@@ -27,6 +27,26 @@
     font-size: 20px;
     margin: 0 0 20px;
   }
+
+  .advancedInputWrapper {
+    position: relative;
+
+    input {
+      padding-right: 130px;
+    }
+
+    button {
+      position: absolute;
+      top: 41px;
+      right: 4px;
+      z-index: 1;
+
+      @include media-breakpoint-up($tablet) {
+        top: 44px;
+        right: 5px;
+      }
+    }
+  }
 }
 
 // Order overview.

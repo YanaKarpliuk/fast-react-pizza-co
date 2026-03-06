@@ -16,6 +16,8 @@ export default function Button({
         return styles.secondary;
       case 'round':
         return styles.round;
+      case 'small':
+        return styles.small;
       default:
         return '';
     }

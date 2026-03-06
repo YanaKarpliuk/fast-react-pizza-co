@@ -19,6 +19,10 @@
         outline: none;
         background: white;
       }
+
+      &[disabled] {
+        background-color: var(--color-light);
+      }
     }
 
     .error {

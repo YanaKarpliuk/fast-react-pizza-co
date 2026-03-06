@@ -6,11 +6,13 @@ import FormInput from '../../ui/Form/FormInput';
 import FormRouter from '../../ui/Form/FormRouter.jsx';
 import FormCheckbox from '../../ui/Form/FormCheckbox';
 import FormAction from '../../ui/Form/FormAction';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import store from '../../store.js';
 import { clearCart, getTotalCartPrice } from '../cart/cartSlice.js';
 import { formatCurrency } from '../../utils/helpers.js';
 import { useState } from 'react';
+import Button from '../../ui/Button/Button';
+import { fetchAddress } from '../user/userSlice.js';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -20,7 +22,9 @@ const isValidPhone = (str) =>
 
 export default function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
-  const username = useSelector(state => state.user.username);
+  const { username, status: addressStatus, position, address, error: addressError } = useSelector(state => state.user);
+  const isLoadingAddress = addressStatus === 'loading';
+
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
 
@@ -30,6 +34,12 @@ export default function CreateOrder() {
   const totalPrice = totalCartPrice + priorityPrice;
 
   const formErrors = useActionData();
+  const dispatch = useDispatch();
+
+  function handleFetchAddress(e) {
+    e.preventDefault();
+    dispatch(fetchAddress());
+  }
 
   return (
       <Container narrow={true}>
@@ -50,11 +60,25 @@ export default function CreateOrder() {
                 errorsData={formErrors}
                 errorMsg={formErrors?.phone}
             />
-            <FormInput
-                name={'address'}
-                id={'address'}
-                label={'Address'}
-            />
+            <div className={styles.advancedInputWrapper}>
+              <FormInput
+                  name={'address'}
+                  id={'address'}
+                  label={'Address'}
+                  disabled={isLoadingAddress}
+                  defaultValue={address}
+                  errorsData={addressStatus === 'error'}
+                  errorMsg={addressError}
+              />
+              {!position.latitude && !position.longitude &&
+                  <Button
+                      name={'Get position'}
+                      type={'small'}
+                      handleClick={handleFetchAddress}
+                      disabled={isLoadingAddress}
+                  />
+              }
+            </div>
             <FormCheckbox
                 name={'priority'}
                 id={'priority'}
@@ -64,12 +88,14 @@ export default function CreateOrder() {
                 handleChange={(e) => setWithPriority(e.target.checked)}
             />
             <FormAction
-                name={'cart'}
-                value={JSON.stringify(cart)}
                 btnName={`Order now for ${formatCurrency(totalPrice)}`}
                 btnNameLoading={'Placing order...'}
                 isSubmitting={isSubmitting}
-                isRouterAction={true}
+                isLoading={isLoadingAddress}
+                routerActionData={[
+                  { name: 'cart', value: JSON.stringify(cart) },
+                  { name: 'position', value: position.latitude && position.longitude ? `${position.latitude},${position.longitude}` : '' }
+                ]}
             />
           </FormRouter>
         </div>
