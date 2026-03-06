@@ -6,10 +6,15 @@ export default function OrderItem({ item, isLoadingIngredients, ingredients }) {
 
   return (
       <li className={styles.item}>
-        <p>
-          {quantity}&times; {name}
+        <div className={styles.itemWrapper}>
+          <p>
+            {quantity}&times; {name}
+          </p>
+          <p>{formatCurrency(totalPrice)}</p>
+        </div>
+        <p className={styles.ingredients}>
+          {isLoadingIngredients ? 'Loading...' : ingredients.join(', ')}
         </p>
-        <p>{formatCurrency(totalPrice)}</p>
       </li>
   );
 }

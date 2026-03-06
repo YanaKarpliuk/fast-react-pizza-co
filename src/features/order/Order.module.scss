@@ -110,19 +110,28 @@
 
   .list {
     .item {
-      display: grid;
-      gap: 10px;
       padding: 15px 0;
       border-bottom: 1px solid var(--color-gray-light);
 
-      @include media-breakpoint-up($tablet) {
-        gap: 20px;
-        grid-template-columns: 1fr auto auto;
-        align-items: center;
+      .itemWrapper {
+        display: grid;
+        gap: 10px;
+
+        @include media-breakpoint-up($tablet) {
+          gap: 20px;
+          grid-template-columns: 1fr auto auto;
+          align-items: center;
+        }
       }
 
       p {
         margin: 0;
+
+        &.ingredients {
+          margin-top: 4px;
+          font-style: italic;
+          font-size: 14px;
+        }
       }
     }
   }
