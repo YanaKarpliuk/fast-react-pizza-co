@@ -1,5 +1,5 @@
 export default function EmptyCart() {
   return (
-      <p>Your cart is still empty. Start adding some pizzas :)</p>
+      <p>Your cart is empty. Start adding some pizzas :)</p>
   );
 }

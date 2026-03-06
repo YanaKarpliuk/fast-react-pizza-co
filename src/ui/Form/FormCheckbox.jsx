@@ -1,6 +1,6 @@
 import styles from './Form.module.scss';
 
-export default function FormCheckbox({ id, label, name, required = true }) {
+export default function FormCheckbox({ id, label, value, name, required = true, handleChange }) {
   return (
       <div className={styles.formCheckbox}>
         <input
@@ -8,8 +8,8 @@ export default function FormCheckbox({ id, label, name, required = true }) {
             name={name}
             id={id}
             required={required}
-            // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
+            value={value}
+            onChange={handleChange}
         />
         <label htmlFor={id}>{label}</label>
       </div>

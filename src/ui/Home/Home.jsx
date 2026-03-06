@@ -18,7 +18,6 @@ export default function Home() {
           {!username
               ? <CreateUser/>
               : <Button
-                  link={true}
                   name={'Continue ordering'}
                   ariaLabel={'Continue ordering'}
                   path={'/menu'}

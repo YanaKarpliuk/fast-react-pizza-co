@@ -1,0 +1,10 @@
+.quantityBtns {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  span {
+    font-size: 14px;
+    line-height: 1;
+  }
+}

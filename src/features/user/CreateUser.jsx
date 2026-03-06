@@ -37,12 +37,7 @@ export default function CreateUser() {
                 value={username}
                 handleChange={(e) => setUsername(e.target.value)}
             />
-            {username &&
-                <FormAction
-                    btnName={'Start ordering'}
-                    ariaLabel={'Start ordering'}
-                />
-            }
+            {username && <FormAction btnName={'Start ordering'}/>}
           </FormSimple>
         </div>
       </div>

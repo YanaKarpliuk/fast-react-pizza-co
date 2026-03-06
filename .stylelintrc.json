@@ -11,6 +11,7 @@
     "selector-pseudo-class-no-unknown": null,
     "at-rule-no-unknown": null,
     "color-function-alias-notation": null,
-    "color-function-notation": null
+    "color-function-notation": null,
+    "no-invalid-double-slash-comments": null
   }
 }
