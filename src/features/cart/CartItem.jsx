@@ -2,7 +2,7 @@ import { formatCurrency } from '../../utils/helpers';
 import styles from './Cart.module.scss';
 import Button from '../../ui/Button/Button';
 import { useDispatch } from 'react-redux';
-import { removeItem } from './cartSlice.js';
+import { removeItem } from './cartSlice.ts';
 import QuantityButtons from '../../ui/QuantityButtons/QuantityButtons.jsx';
 
 export default function CartItem({ item }) {

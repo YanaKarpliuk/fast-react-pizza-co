@@ -1,5 +1,5 @@
 import styles from './Order.module.scss';
-import { formatCurrency } from '../../utils/helpers.js';
+import { formatCurrency } from '../../utils/helpers.ts';
 
 export default function OrderItem({ item, isLoadingIngredients, ingredients }) {
   const { quantity, name, totalPrice } = item;

@@ -1,11 +1,11 @@
-import Container from '../Container/Container';
+import Container from '../Container/Container.tsx';
 import styles from './Home.module.scss';
-import CreateUser from '../../features/user/CreateUser';
+import CreateUser from '../../features/user/CreateUser.jsx';
 import { useSelector } from 'react-redux';
-import Button from '../Button/Button';
+import Button from '../Button/Button.jsx';
 
 export default function Home() {
-  const username = useSelector(state => state.user.username);
+  const username: string = useSelector(state => state.user.username);
 
   return (
       <div className={styles.homeWrapper}>

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import Container from '../../ui/Container/Container';
+import Container from '../../ui/Container/Container.tsx';
 import CartItem from './CartItem.jsx';
 import EmptyCart from './EmptyCart';
 import styles from './Cart.module.scss';
 import Button from '../../ui/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart } from './cartSlice.js';
+import { clearCart } from './cartSlice.ts';
 
 export default function Cart() {
   const cart = useSelector(state => state.cart.cart);

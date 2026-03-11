@@ -1,8 +1,8 @@
 import styles from './Menu.module.scss';
-import { formatCurrency } from '../../utils/helpers.js';
+import { formatCurrency } from '../../utils/helpers.ts';
 import Button from '../../ui/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, getCurrentQuantityById, removeItem } from '../cart/cartSlice.js';
+import { addItem, getCurrentQuantityById, removeItem } from '../cart/cartSlice.ts';
 import QuantityButtons from '../../ui/QuantityButtons/QuantityButtons.jsx';
 
 export default function MenuItem({ pizza }) {

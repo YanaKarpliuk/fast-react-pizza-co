@@ -1,7 +1,7 @@
 import Button from '../Button/Button.jsx';
 import styles from './QuantityButtons.module.scss';
 import { useDispatch } from 'react-redux';
-import { decreaseItemQuantity, increaseItemQuantity } from '../../features/cart/cartSlice.js';
+import { decreaseItemQuantity, increaseItemQuantity } from '../../features/cart/cartSlice.ts';
 
 export default function QuantityButtons({ id, quantity }) {
   const dispatch = useDispatch();

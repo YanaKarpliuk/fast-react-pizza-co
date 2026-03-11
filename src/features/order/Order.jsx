@@ -2,10 +2,10 @@ import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
-} from '../../utils/helpers';
+} from '../../utils/helpers.ts';
 import { getOrder } from '../../services/apiRestaurant.js';
 import { useFetcher, useLoaderData } from 'react-router-dom';
-import Container from '../../ui/Container/Container';
+import Container from '../../ui/Container/Container.tsx';
 import styles from './Order.module.scss';
 import OrderItem from './OrderItem';
 import { useEffect } from 'react';

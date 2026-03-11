@@ -1,11 +1,11 @@
-import Header from '../Header/Header';
-import CartOverview from '../../features/cart/CartOverview.jsx';
+import Header from '../Header/Header.tsx';
+import CartOverview from '../../features/cart/CartOverview.tsx';
 import { Outlet, useNavigation } from 'react-router-dom';
-import Loader from '../Loader/Loader';
+import Loader from '../Loader/Loader.tsx';
 
 export default function AppLayout() {
   const navigation = useNavigation()
-  const isLoading = navigation.state === 'loading'
+  const isLoading: boolean = navigation.state === 'loading'
 
   return (
       <>
