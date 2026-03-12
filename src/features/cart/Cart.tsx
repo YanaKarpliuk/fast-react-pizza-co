@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import Container from '../../ui/Container/Container.tsx';
-import CartItem from './CartItem.jsx';
-import EmptyCart from './EmptyCart';
+import CartItem from './CartItem.tsx';
+import EmptyCart from './EmptyCart.tsx';
 import styles from './Cart.module.scss';
-import Button from '../../ui/Button/Button';
+import Button from '../../ui/Button/Button.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from './cartSlice.ts';
 
@@ -14,7 +14,7 @@ export default function Cart() {
 
   return (
       <Container narrow={true}>
-        <Link className={styles.breadcrumb} to="/menu">&larr; Back to menu</Link>
+        <Link className={styles.breadcrumb} aria-label={'Back to menu'} to="/menu">&larr; Back to menu</Link>
         {cart.length > 0 ?
             (
                 <div className={styles.cart}>
@@ -30,6 +30,7 @@ export default function Cart() {
                     <Button
                         name={'Clear cart'}
                         type={'secondary'}
+                        // TODO
                         handleClick={() => dispatch(clearCart())}
                     />
                   </div>

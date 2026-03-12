@@ -1,11 +1,24 @@
 import styles from './Menu.module.scss';
 import { formatCurrency } from '../../utils/helpers.ts';
-import Button from '../../ui/Button/Button';
+import Button from '../../ui/Button/Button.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, getCurrentQuantityById, removeItem } from '../cart/cartSlice.ts';
-import QuantityButtons from '../../ui/QuantityButtons/QuantityButtons.jsx';
+import QuantityButtons from '../../ui/QuantityButtons/QuantityButtons.tsx';
 
-export default function MenuItem({ pizza }) {
+type Pizza = {
+  id: number;
+  name: string;
+  unitPrice: number;
+  ingredients: string[];
+  soldOut: boolean;
+  imageUrl: string;
+}
+
+type Props = {
+  pizza: Pizza;
+}
+
+export default function MenuItem({ pizza }: Props) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const dispatch = useDispatch();
 
@@ -20,6 +33,7 @@ export default function MenuItem({ pizza }) {
       unitPrice,
       totalPrice: unitPrice,
     };
+    // TODO
     dispatch(addItem(newPizza));
   }
 
@@ -38,13 +52,15 @@ export default function MenuItem({ pizza }) {
                   disabled={soldOut}
                   ariaLabel={`Add ${name} to cart`}
                   handleClick={addToCart}
-              />}
+              />
+          }
           {isInCart &&
               <>
                 <QuantityButtons id={id} quantity={currentQuantity}/>
                 <Button
                     name={'Delete'}
                     ariaLabel={`Remove ${name} from cart`}
+                    // TODO
                     handleClick={() => dispatch(removeItem(id))}
                 />
               </>

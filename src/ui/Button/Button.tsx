@@ -1,5 +1,15 @@
 import styles from './Button.module.scss';
 import { Link } from 'react-router-dom';
+import { MouseEvent } from 'react';
+
+type Props = {
+  name: string;
+  ariaLabel?: string;
+  path?: string;
+  handleClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
+  type?: 'secondary' | 'round' | 'small';
+}
 
 export default function Button({
                                  name,
@@ -8,7 +18,7 @@ export default function Button({
                                  handleClick,
                                  disabled = false,
                                  type
-                               }) {
+                               }: Props) {
 
   function setTypeClass(type) {
     switch (type) {

@@ -1,11 +1,11 @@
 import Container from '../Container/Container.tsx';
 import styles from './Home.module.scss';
-import CreateUser from '../../features/user/CreateUser.jsx';
+import CreateUser from '../../features/user/CreateUser.tsx';
 import { useSelector } from 'react-redux';
-import Button from '../Button/Button.jsx';
+import Button from '../Button/Button.tsx';
 
 export default function Home() {
-  const username: string = useSelector(state => state.user.username);
+  const username = useSelector(state => state.user.username);
 
   return (
       <div className={styles.homeWrapper}>
@@ -19,7 +19,6 @@ export default function Home() {
               ? <CreateUser/>
               : <Button
                   name={'Continue ordering'}
-                  ariaLabel={'Continue ordering'}
                   path={'/menu'}
               />}
         </Container>

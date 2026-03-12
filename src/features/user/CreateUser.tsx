@@ -1,20 +1,21 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import styles from './User.module.scss';
-import FormSimple from '../../ui/Form/FormSimple.jsx';
-import FormInput from '../../ui/Form/FormInput.jsx';
-import FormAction from '../../ui/Form/FormAction.jsx';
+import FormSimple from '../../ui/Form/FormSimple.tsx';
+import FormInput from '../../ui/Form/FormInput.tsx';
+import FormAction from '../../ui/Form/FormAction.tsx';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateUsername } from './userSlice.js';
+import { updateUsername } from './userSlice.ts';
 
 export default function CreateUser() {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState<string>('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  function submitUsername(e) {
+  function submitUsername(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!username) return;
+    // TODO
     dispatch(updateUsername(username));
     setUsername('');
     navigate('/menu');

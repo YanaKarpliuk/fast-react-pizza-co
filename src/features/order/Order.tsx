@@ -3,13 +3,12 @@ import {
   formatCurrency,
   formatDate,
 } from '../../utils/helpers.ts';
-import { getOrder } from '../../services/apiRestaurant.js';
 import { useFetcher, useLoaderData } from 'react-router-dom';
 import Container from '../../ui/Container/Container.tsx';
 import styles from './Order.module.scss';
-import OrderItem from './OrderItem';
+import OrderItem from './OrderItem.tsx';
 import { useEffect } from 'react';
-import UpdateOrder from './UpdateOrder';
+import UpdateOrder from './UpdateOrder.tsx';
 
 export default function Order() {
   const order = useLoaderData();
@@ -65,14 +64,8 @@ export default function Order() {
             {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
             <p className={styles.summary}>To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
           </div>
-          {!priority && <UpdateOrder order={order}/>}
+          {!priority && <UpdateOrder/>}
         </div>
       </Container>
   );
-}
-
-// Get order id from url with { params }.
-// useParams doesn't work in simple functions.
-export async function loader({ params }) {
-  return await getOrder(params.orderId);
 }

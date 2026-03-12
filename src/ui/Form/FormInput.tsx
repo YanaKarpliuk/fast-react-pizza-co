@@ -1,4 +1,21 @@
 import styles from './Form.module.scss';
+import { ChangeEvent } from 'react';
+
+type Props = {
+  id: string;
+  label: string;
+  type?: 'text' | 'tel' | 'email';
+  name: string;
+  required?: boolean;
+  errorsData?: boolean;
+  errorMsg?: string;
+  labelHidden?: boolean;
+  placeholder?: string;
+  value?: string;
+  defaultValue?: string;
+  disabled?: boolean;
+  handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+}
 
 export default function FormInput({
                                     id,
@@ -14,7 +31,7 @@ export default function FormInput({
                                     handleChange,
                                     defaultValue = '',
                                     disabled = false
-                                  }) {
+                                  }: Props) {
   return (
       <div className={styles.formInput}>
         <label
