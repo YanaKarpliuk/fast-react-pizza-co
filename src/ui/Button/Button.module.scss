@@ -30,6 +30,24 @@
     font-size: 14px;
   }
 
+  &.light {
+    background-color: var(--color-light);
+    border-color: var(--color-light);
+
+    @include active {
+      background: rgba(white, 0.7);
+    }
+  }
+
+  &.lightSecondary {
+    background-color: rgba(white, 0.7);
+    border-color: var(--color-light);
+
+    @include active {
+      background: var(--color-light);
+    }
+  }
+
   @include active {
     background: var(--color-yellow-dark);
   }

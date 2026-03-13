@@ -1,11 +1,11 @@
 import Container from '../Container/Container.tsx';
 import styles from './Home.module.scss';
 import CreateUser from '../../features/user/CreateUser.tsx';
-import { useSelector } from 'react-redux';
 import Button from '../Button/Button.tsx';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Home() {
-  const username = useSelector(state => state.user.username);
+  const { isAuthenticated } = useAuth0();
 
   return (
       <div className={styles.homeWrapper}>
@@ -15,7 +15,7 @@ export default function Home() {
             <br/>
             <span className={styles.highlighted}>Straight out of the oven, straight to you.</span>
           </h1>
-          {!username
+          {!isAuthenticated
               ? <CreateUser/>
               : <Button
                   name={'Continue ordering'}

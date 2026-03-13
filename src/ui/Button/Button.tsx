@@ -8,7 +8,7 @@ type Props = {
   path?: string;
   handleClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
-  type?: 'secondary' | 'round' | 'small';
+  type?: 'primary' | 'secondary' | 'round' | 'small' | 'light' | 'lightSecondary';
 }
 
 export default function Button({
@@ -28,6 +28,10 @@ export default function Button({
         return styles.round;
       case 'small':
         return styles.small;
+      case 'light':
+        return styles.light;
+      case 'lightSecondary':
+        return styles.lightSecondary;
       default:
         return '';
     }

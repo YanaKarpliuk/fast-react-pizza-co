@@ -2,15 +2,18 @@
 .searchOrder {
   .input {
     display: block;
-    padding: 10px 20px;
+    padding: 11px 20px;
     border: 0;
     border-radius: 50px;
-    max-width: 300px;
     width: 100%;
     font-size: inherit;
     background: rgba(white, 0.7);
     transition: $transition-time;
     box-sizing: border-box;
+
+    @include media-breakpoint-up($tablet) {
+      width: 300px;
+    }
 
     @include active {
       outline: none;
